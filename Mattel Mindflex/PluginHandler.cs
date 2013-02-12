@@ -29,7 +29,7 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
     private static int index = 0;
     private static int lastByte = -1;
     private static int value = 0;
-    private static int[] packetData = new int[36]; 
+    private static int[] packetData = new int[64]; 
 
     public static Boolean Initialize()
     {
@@ -116,9 +116,15 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
           {
             meditation = num * 4;
             ProcessPacket();
+            index = 0;
           }
 
           index++;
+
+          if (index == 36)
+          {
+            index = 0;
+          }
         }
       }
       catch (Exception ex)
