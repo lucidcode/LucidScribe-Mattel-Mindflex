@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.IO.Ports;
 using System.Threading;
@@ -86,37 +86,45 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
         while (serialPort.BytesToRead > 0)
         {
           int num = serialPort.ReadByte();
-          if ((lastByte == 0xAA) & (num == 0xAA))
+          if ((lastByte == 170) & (num == 170)) //0xAA = 170 decimal
           {
-            index = 2;
+            index = 1;
+            //MessageBox.Show("detected 0xAA 0xAA");
           }
+          lastByte = num;
 
           packetData[index] = num;
-
+          //MessageBox.Show(index + "  " + num);
           // Sample data
-          // 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 (index)
+          // 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 (index)
           //aa aa 20 02 33 83 18 0b f3 7b 03 b2 1c 00 f4 56 00 f6 42 01 00 4a 01 0b e9 00 5d 19 00 6a 85 04 00 05 00 b5 
-          //aa aa 20 02 33 83 18 04 de ac 13 6d 66 15 a5 d5 0e df e5 13 25 ee 17 14 2c 15 f9 00 06 e9 28 04 00 05 00 af 
           //aa aa 20 02 33 83 18 04 d2 2b 00 32 5b 00 0c 56 00 08 49 00 04 f9 00 02 22 00 00 c3 00 00 7d 04 00 05 00 84 
           //aa aa 20 02 33 83 18 05 75 dc 00 97 ee 00 25 1f 00 9d f0 00 ac 67 00 8c 7d 00 3f 77 00 2e 74 04 00 05 00 06 
           //aa aa 20 02 33 83 18 0a db ef 11 72 b6 01 70 e4 03 16 4f 04 96 7d 06 b7 6f 0b 71 d0 09 68 34 04 00 05 00 28 
           //aa aa 20 02 33 83 18 0a b2 21 03 09 50 00 ed 5f 01 df 51 02 c2 69 02 21 6a 00 6c 94 00 59 32 04 00 05 00 2b 
+          //Notes
+          //         02 flags signalQuality                                                                    05 flags meditation
+                         //83 flags eeg power (8*3byte unsigned integers)                                04 flags attention
+                                                                                                             
 
-          if (index == 5)
+
+
+          if (index == 4)
           {
             //signalQuality = num;
+              
           }
 
-          if (index == 33)
+          if (index == 32)
           {
             attention = num * 4;
           }
 
-          if (index == 35)
+          if (index == 34)
           {
             meditation = num * 4;
             ProcessPacket();
-            index = 0;
+            index = -1; //soon to be 0
           }
 
           index++;
@@ -124,6 +132,7 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
           if (index == 36)
           {
             index = 0;
+            MessageBox.Show("Resetting index"); //In theory this code should never be called
           }
         }
       }
@@ -147,6 +156,7 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
       for (byte i = 0; i < 35; i++) {
         if (packetData[i] == 131)
         {
+          MessageBox.Show("detected 0x83 at i=" + i + " reading eeg power (i should be 5)");
           for (int j = 0; j < 8; j++)
           {
             eegPower[j] = (packetData[++i] << 16) | (packetData[++i] << 8) | packetData[++i];
