@@ -89,12 +89,10 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
           if ((lastByte == 170) & (num == 170)) //0xAA = 170 decimal
           {
             index = 1;
-            //MessageBox.Show("detected 0xAA 0xAA");
           }
           lastByte = num;
 
           packetData[index] = num;
-          //MessageBox.Show(index + "  " + num);
           // Sample data
           // 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 (index)
           //aa aa 20 02 33 83 18 0b f3 7b 03 b2 1c 00 f4 56 00 f6 42 01 00 4a 01 0b e9 00 5d 19 00 6a 85 04 00 05 00 b5 
@@ -128,12 +126,6 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
           }
 
           index++;
-
-          if (index == 36)
-          {
-            index = 0;
-            MessageBox.Show("Resetting index"); //In theory this code should never be called
-          }
         }
       }
       catch (Exception ex)
@@ -156,7 +148,6 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
       for (byte i = 0; i < 35; i++) {
         if (packetData[i] == 131)
         {
-          MessageBox.Show("detected 0x83 at i=" + i + " reading eeg power (i should be 5)");
           for (int j = 0; j < 8; j++)
           {
             eegPower[j] = (packetData[++i] << 16) | (packetData[++i] << 8) | packetData[++i];
