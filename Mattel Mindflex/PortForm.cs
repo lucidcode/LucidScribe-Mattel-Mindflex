@@ -21,43 +21,49 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
 
         private void PortForm_Load(object sender, EventArgs e)
         {
-            foreach (string strPort in SerialPort.GetPortNames())
-            {
-                String strPortName = strPort;
-                strPortName = strPortName.Replace("a", "");
-                strPortName = strPortName.Replace("b", "");
-                strPortName = strPortName.Replace("c", "");
-                strPortName = strPortName.Replace("d", "");
-                strPortName = strPortName.Replace("e", "");
-                strPortName = strPortName.Replace("f", "");
-                strPortName = strPortName.Replace("g", "");
-                strPortName = strPortName.Replace("h", "");
-                strPortName = strPortName.Replace("i", "");
-                strPortName = strPortName.Replace("j", "");
-                strPortName = strPortName.Replace("k", "");
-                strPortName = strPortName.Replace("l", "");
-                strPortName = strPortName.Replace("m", "");
-                strPortName = strPortName.Replace("n", "");
-                strPortName = strPortName.Replace("o", "");
-                strPortName = strPortName.Replace("p", "");
-                strPortName = strPortName.Replace("q", "");
-                strPortName = strPortName.Replace("r", "");
-                strPortName = strPortName.Replace("s", "");
-                strPortName = strPortName.Replace("t", "");
-                strPortName = strPortName.Replace("u", "");
-                strPortName = strPortName.Replace("v", "");
-                strPortName = strPortName.Replace("w", "");
-                strPortName = strPortName.Replace("x", "");
-                strPortName = strPortName.Replace("y", "");
-                strPortName = strPortName.Replace("z", "");
-
-                ListViewItem lstItem = new ListViewItem(strPortName);
-                lstItem.ImageIndex = 0;
-                lstPorts.Items.Add(lstItem);
-            }
+          LoadPortList();
         }
 
-        private void lstPlaylists_MouseMove(object sender, MouseEventArgs e)
+        private void LoadPortList()
+        {
+          lstPorts.Clear();
+          foreach (string strPort in SerialPort.GetPortNames())
+          {
+            String strPortName = strPort;
+            strPortName = strPortName.Replace("a", "");
+            strPortName = strPortName.Replace("b", "");
+            strPortName = strPortName.Replace("c", "");
+            strPortName = strPortName.Replace("d", "");
+            strPortName = strPortName.Replace("e", "");
+            strPortName = strPortName.Replace("f", "");
+            strPortName = strPortName.Replace("g", "");
+            strPortName = strPortName.Replace("h", "");
+            strPortName = strPortName.Replace("i", "");
+            strPortName = strPortName.Replace("j", "");
+            strPortName = strPortName.Replace("k", "");
+            strPortName = strPortName.Replace("l", "");
+            strPortName = strPortName.Replace("m", "");
+            strPortName = strPortName.Replace("n", "");
+            strPortName = strPortName.Replace("o", "");
+            strPortName = strPortName.Replace("p", "");
+            strPortName = strPortName.Replace("q", "");
+            strPortName = strPortName.Replace("r", "");
+            strPortName = strPortName.Replace("s", "");
+            strPortName = strPortName.Replace("t", "");
+            strPortName = strPortName.Replace("u", "");
+            strPortName = strPortName.Replace("v", "");
+            strPortName = strPortName.Replace("w", "");
+            strPortName = strPortName.Replace("x", "");
+            strPortName = strPortName.Replace("y", "");
+            strPortName = strPortName.Replace("z", "");
+
+            ListViewItem lstItem = new ListViewItem(strPortName);
+            lstItem.ImageIndex = 0;
+            lstPorts.Items.Add(lstItem);
+          }
+        }
+
+        private void lstPorts_MouseMove(object sender, MouseEventArgs e)
         {
             if (lstPorts.GetItemAt(e.X, e.Y) != null)
             {
@@ -69,7 +75,7 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
             }
         }
 
-        private void lstPlaylists_SelectedIndexChanged(object sender, EventArgs e)
+        private void lstPorts_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstPorts.SelectedItems.Count > 0)
             {
@@ -77,6 +83,11 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
                 DialogResult = DialogResult.OK;
                 Close();
             }
+        }
+
+        private void mnuRefreshPorts_Click(object sender, EventArgs e)
+        {
+          LoadPortList();
         }
     }
 }

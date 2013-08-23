@@ -227,7 +227,7 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
     {
       public override string Name
       {
-        get { return "Delta"; }
+        get { return "MF Delta"; }
       }
       public override bool Initialize()
       {
@@ -253,7 +253,7 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
       List<int> m_arrHistory = new List<int>();
       public override string Name
       {
-        get { return "Mindfles REM"; }
+        get { return "Mindflex REM"; }
       }
       public override bool Initialize()
       {
@@ -275,7 +275,7 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
     {
       public override string Name
       {
-        get { return "Attention"; }
+        get { return "MF Attention"; }
       }
       public override bool Initialize()
       {
@@ -299,7 +299,7 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
     {
       public override string Name
       {
-        get { return "Meditation"; }
+        get { return "MF Meditation"; }
       }
       public override bool Initialize()
       {
@@ -323,7 +323,7 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
     {
       public override string Name
       {
-        get { return "Theta"; }
+        get { return "MF Theta"; }
       }
       public override bool Initialize()
       {
@@ -347,7 +347,7 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
     {
       public override string Name
       {
-        get { return "Low Alpha"; }
+        get { return "MF Low Alpha"; }
       }
       public override bool Initialize()
       {
@@ -371,7 +371,7 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
     {
       public override string Name
       {
-        get { return "High Alpha"; }
+        get { return "MF High Alpha"; }
       }
       public override bool Initialize()
       {
@@ -395,7 +395,7 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
     {
       public override string Name
       {
-        get { return "Low Beta"; }
+        get { return "MF Low Beta"; }
       }
       public override bool Initialize()
       {
@@ -419,7 +419,7 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
     {
       public override string Name
       {
-        get { return "High Beta"; }
+        get { return "MF High Beta"; }
       }
       public override bool Initialize()
       {
@@ -443,7 +443,7 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
     {
       public override string Name
       {
-        get { return "Low Gamma"; }
+        get { return "MF Low Gamma"; }
       }
       public override bool Initialize()
       {
@@ -467,7 +467,7 @@ namespace lucidcode.LucidScribe.Plugin.Mattel.Mindflex
     {
       public override string Name
       {
-        get { return "Mid Gamma"; }
+        get { return "MF Mid Gamma"; }
       }
       public override bool Initialize()
       {

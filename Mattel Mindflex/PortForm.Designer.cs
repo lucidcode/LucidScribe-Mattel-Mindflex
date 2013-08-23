@@ -32,11 +32,14 @@
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PortForm));
       this.pnlPlugins = new lucidcode.Controls.Panel3D();
       this.lstPorts = new System.Windows.Forms.ListView();
+      this.mnuPortsList = new System.Windows.Forms.ContextMenuStrip(this.components);
+      this.mnuRefreshPorts = new System.Windows.Forms.ToolStripMenuItem();
       this.lstImg = new System.Windows.Forms.ImageList(this.components);
       this.Panel3D4 = new lucidcode.Controls.Panel3D();
       this.Label5 = new System.Windows.Forms.Label();
       this.Label6 = new System.Windows.Forms.Label();
       this.pnlPlugins.SuspendLayout();
+      this.mnuPortsList.SuspendLayout();
       this.Panel3D4.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -60,6 +63,7 @@
                   | System.Windows.Forms.AnchorStyles.Left)
                   | System.Windows.Forms.AnchorStyles.Right)));
       this.lstPorts.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.lstPorts.ContextMenuStrip = this.mnuPortsList;
       this.lstPorts.LargeImageList = this.lstImg;
       this.lstPorts.Location = new System.Drawing.Point(3, 25);
       this.lstPorts.MultiSelect = false;
@@ -69,8 +73,22 @@
       this.lstPorts.TileSize = new System.Drawing.Size(150, 32);
       this.lstPorts.UseCompatibleStateImageBehavior = false;
       this.lstPorts.View = System.Windows.Forms.View.Tile;
-      this.lstPorts.SelectedIndexChanged += new System.EventHandler(this.lstPlaylists_SelectedIndexChanged);
-      this.lstPorts.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lstPlaylists_MouseMove);
+      this.lstPorts.SelectedIndexChanged += new System.EventHandler(this.lstPorts_SelectedIndexChanged);
+      this.lstPorts.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lstPorts_MouseMove);
+      // 
+      // mnuPortsList
+      // 
+      this.mnuPortsList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuRefreshPorts});
+      this.mnuPortsList.Name = "contextMenuStrip1";
+      this.mnuPortsList.Size = new System.Drawing.Size(114, 26);
+      // 
+      // mnuRefreshPorts
+      // 
+      this.mnuRefreshPorts.Name = "mnuRefreshPorts";
+      this.mnuRefreshPorts.Size = new System.Drawing.Size(113, 22);
+      this.mnuRefreshPorts.Text = "&Refresh";
+      this.mnuRefreshPorts.Click += new System.EventHandler(this.mnuRefreshPorts_Click);
       // 
       // lstImg
       // 
@@ -128,6 +146,7 @@
       this.Text = "Lucid Scribe - Mattel Mindflex";
       this.Load += new System.EventHandler(this.PortForm_Load);
       this.pnlPlugins.ResumeLayout(false);
+      this.mnuPortsList.ResumeLayout(false);
       this.Panel3D4.ResumeLayout(false);
       this.ResumeLayout(false);
 
@@ -141,5 +160,7 @@
     internal System.Windows.Forms.Label Label6;
     internal System.Windows.Forms.ListView lstPorts;
     internal System.Windows.Forms.ImageList lstImg;
+    private System.Windows.Forms.ContextMenuStrip mnuPortsList;
+    private System.Windows.Forms.ToolStripMenuItem mnuRefreshPorts;
   }
 }
